@@ -1,15 +1,17 @@
 from streamlit_option_menu import option_menu
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from openai import OpenAI
 import streamlit as st
 import requests 
 import time
 import os
 
-load_dotenv()
+#load_dotenv()
+
+OPENAI_API_KEY = st.secrets['OPENAI_API_KEY']
 
 client = OpenAI(
-  api_key=os.environ['OPENAI_API_KEY'],  # this is also the default, it can be omitted
+  api_key=OPENAI_API_KEY
 )
 
 # Preference options
@@ -141,7 +143,7 @@ def find_ai(msg):
 @st.cache_data
 def serpapi_image_search(query, num_results=5):
     # Set your SerpAPI key here
-    SERPAPI_KEY = os.getenv("SERPAPI_KEY")
+    SERPAPI_KEY = st.secrets["SERPAPI_KEY"]
 
     # Define SerpAPI parameters
     params = {
@@ -180,7 +182,7 @@ def serpapi_image_search(query, num_results=5):
 @st.cache_data
 def youtube_video_search(query, num_results=5):
     # Set your YouTube Data API key here
-    YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
+    YOUTUBE_API_KEY = st.secrets["YOUTUBE_API_KEY"]
 
     # Define YouTube Data API parameters for video search
     params = {
