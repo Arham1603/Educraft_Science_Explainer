@@ -92,6 +92,36 @@ def formula_ai(msg):
     # Extract and return the generated lesson plan
     return response.choices[0].message.content
 
+def experiment_ai(msg):
+    system_prompt = """
+    As an experienced secondary school science teacher with over 20 years of expertise in physics, biology, and chemistry, 
+    your role is pivotal in guiding students through engaging and insightful laboratory experiments. Tailor your responses 
+    to address the specific needs and challenges that secondary school students commonly encounter in designing, conducting, 
+    and understanding experiments. Provide detailed instructions, practical examples, and real-world applications to enhance 
+    their hands-on learning experience. Emphasize the significance of each step in the experimental process, clarify common 
+    misconceptions, and inspire a deeper appreciation for the scientific method. Your goal is to foster a curiosity for 
+    experimentation, considering the academic level of the students, and maintaining a supportive and encouraging tone 
+    throughout your interactions. Feel free to include emojis to make the learning experience even more enjoyable! 🧪🔬👩‍🔬👨‍🔬
+    """
+
+    response = client.chat.completions.create(
+        model = "gpt-3.5-turbo",
+        messages = [{
+                        "role":"system",
+                        "content": system_prompt
+                    },
+                    {
+                        "role":"user",
+                        "content": f'{msg}'
+                    }
+        ],
+        max_tokens = 3000,
+        temperature = 0.8,
+    )
+
+    # Extract and return the generated lesson plan
+    return response.choices[0].message.content
+
 def summarizer_ai(msg):
     system_prompt = """
     You have a skill for condensing information, extracting crucial keywords, and crafting engaging YouTube video titles.
@@ -380,6 +410,40 @@ def formula_page():
         else:
             st.warning("No relevant images found.")
 
+def experiment_page():
+   s1_style = """
+    <style>
+        .title {
+            font-size: 50px;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            color: #2B3A67;
+            margin-bottom: 20px;
+        }
+    </style>
+    """
+   st.markdown(s1_style, unsafe_allow_html=True)
+   st.markdown("""<h1 class="title"><strong>Let Educraft explain the experiment! </strong></h1>""", unsafe_allow_html=True)
+
+   # Inputs
+   selected_subject = st.selectbox("Select the science subject:", subjects)
+   experiment = st.text_area("Input the name of the science experiment :")
+   selected_knowledge = st.selectbox("Select your prior knowledge:", prior_knowledge)
+
+   input_prompt = f"""
+    I am a senior high school student seeking assistance in {selected_subject}. The specific experiment or problem I need help with 
+    is "{experiment}". In terms of prior knowledge, I would rate myself as having a {selected_knowledge} level. I believe a clear 
+    understanding of this experiment is crucial for my studies, and I'm looking for detailed explanations and applications to 
+    enhance my comprehension.
+    """
+    # Generate Experiment explanation
+   if st.button("Explain"):
+        experiment_explain = experiment_ai(input_prompt)
+
+        # Display the generated lesson plan
+        st.header("Generated Experiment Explanation:")
+        st.write(experiment_explain)
+
 def main():
     st.set_page_config(
        page_title="Educraft",
@@ -404,10 +468,11 @@ def main():
        "Home": homepage,
        "Theory/Concept": theory_page,
        "Formula": formula_page
+       "Experiment": experiment_page
     }
 
     with st.sidebar:
-        selected_page = option_menu(menu_title="Choose task", options=list(page_functions.keys()), icons=['house', 'receipt', 'receipt'], default_index=0)
+        selected_page = option_menu(menu_title="Choose task", options=list(page_functions.keys()), icons=['house', 'receipt', 'receipt', 'receipt'], default_index=0)
 
     if selected_page in page_functions:
        page_functions[selected_page]()
