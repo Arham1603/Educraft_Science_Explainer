@@ -192,7 +192,7 @@ def serpapi_image_search(query, num_results=5):
     response = requests.get("https://serpapi.com/search.json", params=params).json()
 
     # Debugging: Display the entire SerpAPI response
-    #st.write("SerpAPI Response:", response)
+    # st.write("SerpAPI Response:", response)
 
     # Check if image results are present in the response
     if "images_results" in response:
@@ -203,13 +203,13 @@ def serpapi_image_search(query, num_results=5):
         image_results = all_image_results[:num_results]
 
         # Debugging: Display the image results
-        #st.write("Image Results:", image_results)
+        # st.write("Image Results:", image_results)
 
         return image_results
     else:
         st.warning("No relevant images found.")
         return []
-
+  
 # Function to perform a video search using YoutubeAPI
 @st.cache_data
 def youtube_video_search(query, num_results=5):
