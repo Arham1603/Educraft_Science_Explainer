@@ -17,11 +17,11 @@ client = OpenAI(
 # Preference options
 subjects = ['Biology', 'Chemistry', 'Physics']
 preferred_learning_styles = ['Detailed explanations', 'Examples']
-specific_challenges = ['Conceptual understanding', 'Problem-solving', 'Experiments']
+specific_challenges = ['Conceptual understanding', 'Problem-solving']
 prior_knowledge = ['Limited', 'Moderate', 'Advanced']
 preferred_interaction = ['Socratic questioning', 'Interactive discussions']
 preferred_difficulty = ['Easy','Moderate', 'Challenging']
-preferred_support = ['Patient and understanding', 'Providing constructive criticism', 'Offering positive reinforcement', 'Encouraging and supportive']
+preferred_support = ['Patient and understanding', 'Providing constructive criticism', 'Offering positive reinforcement']
 preferred_language = ['English', 'Malay', 'Manglish', 'Tamil', 'Mandarin']
 
 def teacher_ai(subjects, preferred_learning_styles, specific_challenges, current_topic, prior_knowledge,
