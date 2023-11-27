@@ -16,7 +16,7 @@ client = OpenAI(
 
 # Preference options
 subjects = ['Biology', 'Chemistry', 'Physics']
-preferred_learning_styles = ['Detailed explanations', 'Examples']
+preferred_learning_styles = ['Detailed explanations', 'Examples', 'Real-world applications']
 specific_challenges = ['Conceptual understanding', 'Problem-solving']
 prior_knowledge = ['Limited', 'Moderate', 'Advanced']
 preferred_interaction = ['Socratic questioning', 'Interactive discussions']
