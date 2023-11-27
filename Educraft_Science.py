@@ -15,14 +15,14 @@ client = OpenAI(
 )
 
 # Preference options
-subjects = ['Biology', 'Chemistry', 'Physics']
-preferred_learning_styles = ['Detailed explanations', 'Examples', 'Real-world applications']
-specific_challenges = ['Conceptual understanding', 'Problem-solving']
-prior_knowledge = ['Limited', 'Moderate', 'Advanced']
-preferred_interaction = ['Socratic questioning', 'Interactive discussions']
-preferred_difficulty = ['Easy','Moderate', 'Challenging']
-preferred_support = ['Patient and understanding', 'Providing constructive criticism', 'Offering positive reinforcement']
-preferred_language = ['English', 'Malay', 'Manglish', 'Tamil', 'Mandarin']
+subjects = ['Any', 'Biology', 'Chemistry', 'Physics']
+preferred_learning_styles = ['Any', 'Detailed explanations', 'Examples', 'Real-world applications']
+specific_challenges = ['Any', 'Conceptual understanding', 'Problem-solving']
+prior_knowledge = ['Any', 'Limited', 'Moderate', 'Advanced']
+preferred_interaction = ['Any', 'Socratic questioning', 'Interactive discussions']
+preferred_difficulty = ['Any', 'Easy', 'Moderate', 'Challenging']
+preferred_support = ['Any', 'Patient and understanding', 'Providing constructive criticism', 'Offering positive reinforcement']
+preferred_language = ['Any', 'English', 'Tamil', 'Mandarin']
 
 def teacher_ai(subjects, preferred_learning_styles, specific_challenges, current_topic, prior_knowledge,
                preferred_interaction, preferred_difficulty, preferred_support, preferred_language):
@@ -127,7 +127,8 @@ def summarizer_ai(msg):
     system_prompt = """
     You have a skill for condensing information, extracting crucial keywords, and crafting engaging YouTube video titles.
     Your expertise shines when summarizing content, ensuring it captures the essence effectively, especially prioritizing 
-    science aspects and experiments. After considering these factors, select the most impactful title.
+    science aspects, especially in physics, biology, and chemistry. After considering these factors, select the most impactful title. 
+    Make sure the title chosen is related to the science.
     """
     response = client.chat.completions.create(
         model = "gpt-3.5-turbo",
