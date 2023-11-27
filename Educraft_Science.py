@@ -467,7 +467,7 @@ def main():
     page_functions = {
        "Home": homepage,
        "Theory/Concept": theory_page,
-       "Formula": formula_page
+       "Formula": formula_page,
        "Experiment": experiment_page
     }
 
