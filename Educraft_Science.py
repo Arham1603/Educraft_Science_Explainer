@@ -152,13 +152,53 @@ def find_ai(msg):
     Your expertise lies in summarizing content and identifying crucial science formulas, especially in chemistry, physics, and 
     biology for secondary school.  Your goal is to find the most important science formula related to the given 
     content for a Google image search. Consider the key aspects and prioritize the formula that encapsulates the core of 
-    the information. Then write the one formula name only ( the most important one). Don't write anything else.
+    the information. Then write one formula only. Don't write anything else.
     """
+    instruction = """
+    👩‍🏫 Sure! I'd be happy to help you with understanding the concept of "Speed" in physics. Speed is a fundamental concept that 
+    describes how fast an object is moving. It is defined as the distance traveled by an object divided by the time taken to travel 
+    that distance. The formula for speed is:
+
+    Speed = Distance ÷ Time
+
+    Let's break this formula down and understand each component. Distance refers to the total path covered by an object, usually 
+    measured in meters (m). Time is the duration it takes for an object to travel that distance, typically measured in seconds (s). 
+    When we divide the distance by the time, we get the speed of the object.
+
+    To illustrate this concept, let's consider an example. Imagine a car traveling a distance of 100 meters in 10 seconds. By using the 
+    formula, we can calculate the speed as follows:
+
+    Speed = Distance ÷ Time Speed = 100m ÷ 10s Speed = 10 m/s
+
+    In this case, the speed of the car is 10 meters per second.
+
+    Now, let's discuss some real-world applications of the speed formula. Speed is used in various contexts, such as calculating the 
+    velocity of a moving vehicle, determining the rate at which an object is moving, or analyzing the speed of sound or light. 
+    Understanding speed is essential in fields like transportation, sports, and even astronomy.
+
+    One common misconception students have is confusing speed with velocity. While speed refers to the rate at which an object moves, 
+    velocity includes the speed and the direction in which the object is moving. So, remember that speed is just how fast or slow 
+    something is moving, while velocity adds direction to that speed.
+
+    To enhance your understanding of speed, I suggest practicing more problems and applying the formula to different scenarios. 
+    You can also try to relate speed to everyday life situations to make it more relatable. If you have any specific questions or 
+    examples you'd like me to help you with, feel free to ask! 😊
+    """
+    sample_answer = "Speed = Distance ÷ Time"
+  
     response = client.chat.completions.create(
         model = "gpt-3.5-turbo",
         messages = [{
                         "role":"system",
                         "content": system_prompt
+                    },
+                    {
+                        "role":"user",
+                        "content": instruction
+                    },
+                    {
+                        "role":"assistant",
+                        "content": sample_answer
                     },
                     {
                         "role":"user",
