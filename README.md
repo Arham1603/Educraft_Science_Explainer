@@ -15,5 +15,5 @@ EduCraft is a tool designed to assist secondary school students in understanding
 4. Explore additional resources: Discover relevant YouTube videos and images to supplement your learning.
 
 ## Get started:
-Streamlit cloud - https://educraftscienceexplainer.streamlit.app
-Gamma AI - https://gamma.app/public/Educraft-z2dlk30m0ykgr15?mode=doc
+- Streamlit cloud - https://educraftscienceexplainer.streamlit.app 
+- Gamma AI - https://gamma.app/public/Educraft-z2dlk30m0ykgr15?mode=doc
