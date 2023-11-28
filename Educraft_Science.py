@@ -237,7 +237,7 @@ def serpapi_image_search(query, num_results=5):
     # Check if image results are present in the response
     if "images_results" in response:
         # Extract image results from the response
-        all_image_results = [result["original"] for result in response["images_results"]]
+        all_image_results = [result["original"] for result in response.get("images_results", [])]
 
         # Limit the results to the specified number
         image_results = all_image_results[:num_results]
