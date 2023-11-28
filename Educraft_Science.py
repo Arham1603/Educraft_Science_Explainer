@@ -147,6 +147,30 @@ def summarizer_ai(msg):
 
     return response.choices[0].message.content
 
+def find_ai(msg):
+    system_prompt = """
+    Your expertise lies in summarizing content and identifying crucial science formulas, especially in chemistry, physics, and 
+    biology for secondary school.  Your goal is to find the most important science formula related to the given 
+    content for a Google image search. Consider the key aspects and prioritize the formula that encapsulates the core of 
+    the information. Then write the one formula name only ( the most important one). Don't write anything else.
+    """
+    response = client.chat.completions.create(
+        model = "gpt-3.5-turbo",
+        messages = [{
+                        "role":"system",
+                        "content": system_prompt
+                    },
+                    {
+                        "role":"user",
+                        "content": f'{msg}'
+                    }
+        ],
+        max_tokens = 3000,
+        temperature = 1.0,
+    )
+
+    return response.choices[0].message.content
+
 # Function to perform an image search using SerpAPI
 @st.cache_data
 def serpapi_image_search(query, num_results=5):
@@ -376,8 +400,9 @@ def formula_page():
         st.header("Generated Formula Explanation:")
         st.write(formula_explain)
 
+        image_search = find_ai(formula_explain)
         # Generate and display relevant images using SerpAPI
-        image_results = serpapi_image_search(formula, num_results=num_images)
+        image_results = serpapi_image_search(image_search, num_results=num_images)
 
         # Display image results
         if image_results:
